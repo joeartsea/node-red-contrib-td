@@ -1,0 +1,34 @@
+{
+  "name": "node-red-node-td",
+  "version": "0.0.1",
+  "description": "A Node-RED node to write to TreasureData",
+  "dependencies": {
+    "td":"0.2.2",
+    "request":"2.42.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joeartsea/node-red-node-td"
+  },
+  "license": "Apache",
+  "keywords": [
+    "node-red",
+    "td",
+    "treasuredata"
+  ],
+  "node-red": {
+    "nodes": {
+      "TreasureData": "td.js"
+    }
+  },
+  "author": {
+    "name": "Atsushi Kojo",
+    "email": "artsnet111@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "joeartsea",
+      "email": "artsnet111@gmail.com"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+<!--
+  Copyright 2014 Atsushi Kojo.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/x-red" data-template-name="td">
+  <div class="form-row">
+    <label for="node-config-input-account"><i class="fa fa-bookmark"></i> Account</label>
+    <input type="text" id="node-config-input-account" placeholder="example@example.com" />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-writekey"><i class="fa fa-lock"></i> Writekey</label>
+    <input type="password" id="node-config-input-writekey">
+  </div>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('td', {
+    category: 'config',
+    color: 'rgb(199, 0, 11)',
+    defaults: {
+      account: { type: 'text', required: true },
+      database: { value: '', required: true },
+      table: { value: '', required: true }
+    },
+    credentials: {
+      writekey: { type: 'password', required: true }
+    },
+    label: function() {
+      return this.account
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="td out">
+  <div class="form-row">
+    <label for="node-input-td"><i class="fa fa-bookmark"></i> Account</label>
+    <input type="text" id="node-input-td">
+  </div>
+  <div class="form-row">
+    <label for="node-input-database"><i class="fa fa-database"></i> Database</label>
+    <input type="text" id="node-input-database" placeholder="database">
+  </div>
+  <div class="form-row">
+    <label for="node-input-table"><i class="fa fa-table"></i> Table</label>
+    <input type="text" id="node-input-table" placeholder="table">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="td out">
+    <p>A simple TreasureData output node. Can insert objects.</p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('td out', {
+    category: 'storage-output',
+    color: 'rgb(199, 0, 11)',
+    defaults: {
+      td: { type: 'td', required: true },
+      name: { value: '' },
+      database: { value: '', required: true },
+      table: { value: '', required: true }
+    },
+    inputs: 1,
+    outputs: 0,
+    icon: 'td.png',
+    align: 'right',
+    label: function() {
+      var tdNode = RED.nodes.node(this.td);
+      return this.name || 'td';
+    },
+    labelStyle: function() {
+      return this.name ? 'node_label_italic' : '';
+    },
+    oneditprepare: oneditprepare
+  });
+</script>
