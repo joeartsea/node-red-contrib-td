@@ -41,12 +41,13 @@ module.exports = function (RED) {
 
     if (this.tdConfig) {
       var node = this;
-      var apiUrl = "http://in.treasuredata.com/js/v3/event/";
+      var apiUrl = "https://in.treasuredata.com/js/v3/event/";
       var credentials = RED.nodes.getCredentials(this.td);
 
       node.on('input', function (msg) {
         node.status({ fill: 'blue', shape: 'dot', text: 'sending' });
         request.post({
+          rejectUnauthorized: false,
           url: apiUrl + this.database + '/' + this.table,
           headers: {
             'Accept': 'application/json',
