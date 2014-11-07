@@ -16,7 +16,6 @@
 
 module.exports = function (RED) {
   'use strict';
-  var td = require('td');
   var request = require('request');
 
   function TdNode(n) {
@@ -65,8 +64,8 @@ module.exports = function (RED) {
         });
       });
     } else {
-      this.error("missing td configuration");
+      this.error('missing td configuration');
     }
   }
-  RED.nodes.registerType("td out", TdOutNode);
+  RED.nodes.registerType('td out', TdOutNode);
 }
