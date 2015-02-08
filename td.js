@@ -26,7 +26,6 @@ module.exports = function (RED) {
 
   RED.nodes.registerType('td', TdNode, {
     credentials: {
-      account: { type: 'text' },
       writekey: { type: 'password' }
     }
   });
