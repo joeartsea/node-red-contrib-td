@@ -52,7 +52,7 @@ module.exports = function (RED) {
             'Content-Type': 'application/json',
             'X-TD-WRITE-KEY': credentials.writekey
           },
-          body: JSON.stringify(msg),
+          body: msg.payload,
           json: true
         }, function (err, response, body) {
           if (err) {
