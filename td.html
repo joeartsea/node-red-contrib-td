@@ -23,6 +23,10 @@
     <label for="node-config-input-writekey"><i class="fa fa-lock"></i> Writekey</label>
     <input type="password" id="node-config-input-writekey">
   </div>
+  <div class="form-row">
+    <label for="node-config-input-apikey"><i class="fa fa-lock"></i> APIkey</label>
+    <input type="password" id="node-config-input-apikey">
+  </div>
 </script>
 
 <script type="text/javascript">
@@ -32,13 +36,56 @@
     defaults: {
       account: { value: '', required: true },
       database: { value: '', required: true },
-      table: { value: '', required: true }
+      table: { value: '' }
     },
     credentials: {
-      writekey: { type: 'password', required: true }
+      writekey: { type: 'password' },
+      apikey: { type: 'password' }
     },
     label: function() {
       return this.account
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="td in">
+  <div class="form-row">
+    <label for="node-input-td"><i class="fa fa-bookmark"></i> Account</label>
+    <input type="text" id="node-input-td">
+  </div>
+  <div class="form-row">
+    <label for="node-input-database"><i class="fa fa-database"></i> Database</label>
+    <input type="text" id="node-input-database" placeholder="database">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="td in">
+    <p>A simple TreasureData input node. Can query tables.</p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('td in', {
+    category: 'storage-input',
+    color: 'rgb(199, 0, 11)',
+    defaults: {
+      td: { type: 'td', required: true },
+      name: { value: '' },
+      database: { value: '', required: true }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: 'td.png',
+    align: 'left',
+    label: function() {
+      var tdNode = RED.nodes.node(this.td);
+      return this.name || 'td';
+    },
+    labelStyle: function() {
+      return this.name ? 'node_label_italic' : '';
     }
   });
 </script>

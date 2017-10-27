@@ -17,6 +17,7 @@
 module.exports = function (RED) {
   'use strict';
   var request = require('request');
+  var td = require('td');
 
   function TdNode(n) {
     RED.nodes.createNode(this, n);
@@ -26,9 +27,47 @@ module.exports = function (RED) {
 
   RED.nodes.registerType('td', TdNode, {
     credentials: {
-      writekey: { type: 'password' }
+      writekey: { type: 'password' },
+      apikey: { type: 'password' }
     }
   });
+
+  function TdInputNode(n) {
+    RED.nodes.createNode(this, n);
+    this.td = n.td;
+    this.database = n.database;
+    this.tdConfig = RED.nodes.getNode(this.td);
+
+    if (this.tdConfig) {
+      var node = this;
+      var credentials = RED.nodes.getCredentials(this.td);
+      var client = new td(credentials.apikey);
+
+      node.on('input', function (msg) {
+        node.status({ fill: 'blue', shape: 'dot', text: 'sending' });
+        client.prestoQuery(this.database, msg.payload, function(err, res) {
+          var i = setInterval(function () {
+            client.jobResult(res.job, 'json', function(err, results) {
+              if (err) {
+                node.error(err.toString());
+                node.status({ fill: 'red', shape: 'ring', text: 'failed' });
+                clearInterval(i);
+              }
+              if (results) {
+                msg.payload = results;
+                node.send(msg);
+                node.status({});
+                clearInterval(i);
+              }
+            });
+          }, 5000);
+        });
+      });
+    } else {
+      this.error('missing td configuration');
+    }
+  }
+  RED.nodes.registerType('td in', TdInputNode);
 
   function TdOutNode(n) {
     RED.nodes.createNode(this, n);
