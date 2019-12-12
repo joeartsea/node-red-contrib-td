@@ -16,17 +16,25 @@
 
 <script type="text/x-red" data-template-name="td">
   <div class="form-row">
-    <label for="node-config-input-account"><i class="fa fa-bookmark"></i> Account</label>
+    <label for="node-config-input-account"><i class="fa fa-bookmark"></i> <span data-i18n="td.label.account"></span></label>
     <input type="text" id="node-config-input-account" placeholder="example@example.com" />
   </div>
   <div class="form-row">
-    <label for="node-config-input-writekey"><i class="fa fa-lock"></i> Writekey</label>
+    <label for="node-config-input-writekey"><i class="fa fa-lock"></i> <span data-i18n="td.label.writekey"></span></label>
     <input type="password" id="node-config-input-writekey">
   </div>
   <div class="form-row">
-    <label for="node-config-input-apikey"><i class="fa fa-lock"></i> APIkey</label>
+    <label for="node-config-input-apikey"><i class="fa fa-lock"></i> <span data-i18n="td.label.apikey"></span></label>
     <input type="password" id="node-config-input-apikey">
   </div>
+</script>
+
+<script type="text/x-red" data-help-name="td">
+    <p>Configuration for a connection to an Treasure Data API.</p>
+    <p></p>
+    <p><code>Account</code> sets the email of the Treasure Data user.</p>
+    <p><code>Writekey</code> sets the user’s Write-only API key.</p>
+    <p><code>APIkey</code> sets the API key to access Treasure Data REST API.</p>
 </script>
 
 <script type="text/javascript">
@@ -50,21 +58,37 @@
 
 <script type="text/x-red" data-template-name="td in">
   <div class="form-row">
-    <label for="node-input-td"><i class="fa fa-bookmark"></i> Account</label>
+    <label for="node-input-td"><i class="fa fa-bookmark"></i> <span data-i18n="td_in.label.account"></span></label>
     <input type="text" id="node-input-td">
   </div>
   <div class="form-row">
-    <label for="node-input-database"><i class="fa fa-database"></i> Database</label>
-    <input type="text" id="node-input-database" placeholder="database">
+    <label for="node-input-database"><i class="fa fa-database"></i> <span data-i18n="td_in.label.database"></span></label>
+    <input type="text" id="node-input-database" data-i18n="[placeholder]td_in.placeholder.database">
   </div>
   <div class="form-row">
-    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-    <input type="text" id="node-input-name" placeholder="Name">
+    <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="td_in.label.name"></span></label>
+    <input type="text" id="node-input-name" data-i18n="[placeholder]td_in.placeholder.name">
   </div>
 </script>
 
 <script type="text/x-red" data-help-name="td in">
     <p>A simple TreasureData input node. Can query tables.</p>
+
+    <h3>Inputs</h3>
+      <dl class="message-properties">
+          <dt>payload <span class="property-type">string</span></dt>
+          <dd>the Presto query which run on given database. </dd>
+      </dl>
+
+    <h3>Outputs</h3>
+      <dl class="message-properties">
+          <dt>payload <span class="property-type">array</span></dt>
+          <dd>query result in json format. </dd>
+      </dl>
+
+    <h3>Details</h3>
+      <p><code>Database</code> sets the database name to execute the query.</p>
+
 </script>
 
 <script type="text/javascript">
@@ -92,25 +116,36 @@
 
 <script type="text/x-red" data-template-name="td out">
   <div class="form-row">
-    <label for="node-input-td"><i class="fa fa-bookmark"></i> Account</label>
+    <label for="node-input-td"><i class="fa fa-bookmark"></i> <span data-i18n="td_out.label.account"></span></label>
     <input type="text" id="node-input-td">
   </div>
   <div class="form-row">
-    <label for="node-input-database"><i class="fa fa-database"></i> Database</label>
-    <input type="text" id="node-input-database" placeholder="database">
+    <label for="node-input-database"><i class="fa fa-database"></i> <span data-i18n="td_out.label.database"></span></label>
+    <input type="text" id="node-input-database" data-i18n="[placeholder]td_out.placeholder.database">
   </div>
   <div class="form-row">
-    <label for="node-input-table"><i class="fa fa-table"></i> Table</label>
-    <input type="text" id="node-input-table" placeholder="table">
+    <label for="node-input-table"><i class="fa fa-table"></i> <span data-i18n="td_out.label.table"></span></label>
+    <input type="text" id="node-input-table" data-i18n="[placeholder]td_out.placeholder.table">
   </div>
   <div class="form-row">
-    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-    <input type="text" id="node-input-name" placeholder="Name">
+    <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n="td_out.label.name"></span></label>
+    <input type="text" id="node-input-name" data-i18n="[placeholder]td_out.placeholder.name">
   </div>
 </script>
 
 <script type="text/x-red" data-help-name="td out">
     <p>A simple TreasureData output node. Can insert objects.</p>
+
+    <h3>Inputs</h3>
+      <dl class="message-properties">
+          <dt>payload <span class="property-type">object</span></dt>
+          <dd>the data to be inserted into the given table. </dd>
+      </dl>
+
+    <h3>Details</h3>
+      <p><code>Table</code> sets the table to insert data.</p>
+      <p><code>Database</code> sets the database to insert data.</p>
+
 </script>
 
 <script type="text/javascript">

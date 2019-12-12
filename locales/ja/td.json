@@ -1,0 +1,33 @@
+{
+    "td" : {
+        "label" : {
+            "account" : "Account",
+            "writekey" : "Writekey",
+            "apikey" : "APIkey"
+        }
+    },
+    "td_in" : {
+        "label" : {
+            "account" : "Account",
+            "database" : "データベース名",
+            "name" : "名前"
+        },
+        "placeholder" : {
+            "database" : "データベース名",
+            "name" : "名前"
+        }
+    },
+    "td_out" : {
+        "label" : {
+            "account" : "Account",
+            "database" : "データベース名",
+            "table" : "テーブル名",
+            "name" : "名前"
+        },
+        "placeholder" : {
+            "database" : "データベース名",
+            "table" : "テーブル名",
+            "name" : "名前"
+        }
+    }
+}

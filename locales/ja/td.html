@@ -1,0 +1,41 @@
+<script type="text/x-red" data-help-name="td">
+  <p>Treasure Data APIへの接続の構成を設定します。</p>
+  <p></p>
+  <p><code>Account</code> は、Treasure Dataユーザーのメールアドレスを設定します。</p>
+  <p><code>Writekey</code> は、ユーザーの書き込み専用APIキーを設定します。</p>
+  <p><code>APIkey</code> は、Treasure Data REST APIにアクセスするためのAPIキーを設定します。</p>
+</script>
+
+<script type="text/x-red" data-help-name="td in">
+    <p>シンプルなTreasureDataの入力ノードです。指定したデータベースでクエリを実行します。</p>
+
+    <h3>入力</h3>
+      <dl class="message-properties">
+          <dt>payload <span class="property-type">文字列</span></dt>
+          <dd>指定したデータベースで実行されるPrestoクエリを入力します。 </dd>
+      </dl>
+
+    <h3>出力</h3>
+      <dl class="message-properties">
+          <dt>payload <span class="property-type">配列</span></dt>
+          <dd>クエリ結果をJSON形式で出力します。 </dd>
+      </dl>
+
+    <h3>詳細</h3>
+      <p><code>データベース名</code>は、クエリを実行するデータベース名を設定します。</p>
+</script>
+
+<script type="text/x-red" data-help-name="td out">
+    <p>シンプルなTreasureDataの出力ノード。オブジェクトを挿入します。</p>
+
+    <h3>入力</h3>
+      <dl class="message-properties">
+          <dt>payload <span class="property-type">オブジェクト</span></dt>
+          <dd>指定したテーブルに挿入されるデータを入力します。 </dd>
+      </dl>
+
+    <h3>詳細</h3>
+      <p><code>テーブル名</code>は、データを挿入するテーブル名を設定します。</p>
+      <p><code>データベース名</code>は、データを挿入するデータベース名を設定します。</p>
+
+</script>
